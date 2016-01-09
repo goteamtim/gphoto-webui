@@ -16,7 +16,6 @@ function takePicture(){
 				span = document.getElementById("count");
 				span.innerHTML = counter;
 			}
-    // Display 'counter' wherever you want to display it.
     if (counter === 0) {
     	$.mobile.loading( 'show', {
     		text: 'Taking Image....',
@@ -37,6 +36,7 @@ function takePicture(){
 
 }, 1000);
 	}
+}
 
 
 	$(document).on( "pageshow","#gallery", function( event ) {
