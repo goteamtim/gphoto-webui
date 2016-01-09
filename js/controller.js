@@ -6,51 +6,47 @@ $(document).on( 'pageinit',function(event){
 
 
 function takePicture(){
-
-	function(){
-		var counter = 5;
-
+		var counter = 6;
 		setInterval(function() {
 			counter--;
 			if (counter >= 0) {
 				span = document.getElementById("count");
 				span.innerHTML = counter;
 			}
-    if (counter === 0) {
-    	$.mobile.loading( 'show', {
-    		text: 'Taking Image....',
-    		textVisible: true,
-    		theme: 'a'
-    	});
+			if (counter === 0) {
+				$.mobile.loading( 'show', {
+					text: 'Taking Image....',
+					textVisible: true,
+					theme: 'a'
+				});
 
 
-    	$.ajax({
-    		url: "service.php?action=takePicture",
-    		dataType : "json",
-    		success: function(data){
-    			$.mobile.loading( 'hide');
-    		},
-    	});
-    	clearInterval(counter);
-    }
+				$.ajax({
+					url: "service.php?action=takePicture",
+					dataType : "json",
+					success: function(data){
+						$.mobile.loading( 'hide');
+					},
+				});
+				clearInterval(counter);
+			}
 
-}, 1000);
-	}
+		}, 1000);
 }
 
 
-	$(document).on( "pageshow","#gallery", function( event ) {
-		$.ajax({
-			url: "service.php?action=getImages",
-			dataType : "json",
-			success: function(data){
-				updateGalleryGrid(data);
-			},
-		});
-	})
+$(document).on( "pageshow","#gallery", function( event ) {
+	$.ajax({
+		url: "service.php?action=getImages",
+		dataType : "json",
+		success: function(data){
+			updateGalleryGrid(data);
+		},
+	});
+})
 
 
-	function updateGalleryGrid(data){
+function updateGalleryGrid(data){
 	//$("#galleryGrid").html("");
 	
 	var galleryHTML = "";
