@@ -23,6 +23,11 @@ $returnObj;
 try{
 	switch($action){
 
+		case "checkBattery":
+			exec ("gphoto2 --get-config batterylevel | grep Current | cut -c 9-13",$output);
+			echo json_encode(true);
+			break;
+
 		case "takePicture":
 			exec ("gphoto2 --capture-image-and-download --filename \"./images/capture-%Y%m%d-%H%M%S-%03n.%C\"",$output);
 			echo json_encode(true);					

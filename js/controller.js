@@ -73,6 +73,7 @@ function updateGalleryGrid(data){
 
 $(document).on( 'pageinit',function(event){
 	getCamera();
+	getBatteryStatus();
 });
 
 function deleteFile(file){
@@ -101,6 +102,16 @@ function getCamera(){
 		dataType : "json",
 		success: function(data){
 			$("#cameraName").html(data.camera);
+		},
+	});
+}
+
+function getBatteryStatus(){
+	$.ajax({
+		url: "service.php?action=checkBattery",
+		dataType : "json",
+		success: function (data) {
+			$("#batteryStatus").html(data);
 		},
 	});
 }
