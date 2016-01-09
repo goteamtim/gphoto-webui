@@ -56,3 +56,12 @@ php5 -S 0.0.0.0:8000
 9.) The WebUI is pretty much self explanatory. Hit the aperture icon to take a picture. View the images on the Gallery page. The images are captured in whatever format the camera is set to use, and this does support RAW images as well. Images are stored on the Raspberry Pi's SD card, not in the camera's memory.
 
 10.) The source images can be downloaded through the Web UI or can be FTP'd through an app like FileZilla over SFTP. The images are all stored in the "images" folder in relative to the root of the application. (i.e. ~/gphoto-webui-master/images) .
+
+
+TO-DO
+============
+Battery status
+Time lapse option
+Countdown timer
+Green screen removal
+Image overlay options
