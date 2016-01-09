@@ -14,7 +14,7 @@ function takePicture(){
 				span.innerHTML = counter;
 			}
 			if (counter === 0) {
-				$("#counter").hide();
+				$("#count").fadeOut();
 
 				$.mobile.loading( 'show', {
 					text: 'Taking Image....',
