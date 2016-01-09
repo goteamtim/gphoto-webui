@@ -64,7 +64,7 @@ TO-DO
 
 Time lapse option
 
-Countdown timer
+~~Countdown timer~~
 
 Green screen removal
 
