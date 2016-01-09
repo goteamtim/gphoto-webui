@@ -14,6 +14,8 @@ function takePicture(){
 				span.innerHTML = counter;
 			}
 			if (counter === 0) {
+				$("#counter").hide();
+
 				$.mobile.loading( 'show', {
 					text: 'Taking Image....',
 					textVisible: true,
