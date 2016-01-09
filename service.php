@@ -25,7 +25,7 @@ try{
 
 		case "checkBattery":
 			exec ("gphoto2 --get-config batterylevel | grep Current | cut -c 9-13",$output);
-			echo json_encode(true);
+			echo json_encode($output[0]);
 			break;
 
 		case "takePicture":
