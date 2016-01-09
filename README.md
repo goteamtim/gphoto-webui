@@ -60,8 +60,12 @@ php5 -S 0.0.0.0:8000
 
 TO-DO
 ============
-Battery status
+~~Battery status~~
+
 Time lapse option
+
 Countdown timer
+
 Green screen removal
+
 Image overlay options
