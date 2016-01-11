@@ -69,3 +69,5 @@ Time lapse option
 Green screen removal
 
 Image overlay options
+
+Settings page for countdown, image overlays, time lapse, etc.
