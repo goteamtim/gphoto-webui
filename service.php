@@ -11,6 +11,21 @@ require_once("CameraRaw.php");
 //exec ("gphoto2 --set-config uilock=1",$output);
 //echo join("\n",$output);
 
+// set and write data for example 
+$settings = array( 
+            'initialTimeout' => 6, 
+            'interval' => 3, 
+            'numOfShots' => '4', 
+            'showBatteryStatus' => true 
+        );
+
+$fp = fopen('settings.txt','w'); 
+
+// Reading the data 
+$infotxt = file_get_contents('settings.txt'); 
+$info = unserialize($infotxt);
+extract($info);
+
 $action = '';
 
 if (isset($_GET['action'])){
@@ -22,6 +37,13 @@ $returnObj;
 
 try{
 	switch($action){
+
+		case "saveSettings":
+			//Gather all the information from the GET method and save the settings for the user in localstorage
+			//Still need to update the information here
+			//This actually stores the updated data
+			fwrite($fp,serialize($store)); 
+			break;
 
 		case "checkBattery":
 			exec ("gphoto2 --get-config batterylevel | grep Current | cut -c 9-13",$output);

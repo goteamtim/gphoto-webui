@@ -17,6 +17,7 @@
 
 	<div data-role="header">
 		<h1 id="cameraName"></h1>
+		<a href="#settings" class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
 		<a href="#gallery" class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-grid">Gallery
 		</a>
 	</div><!-- /header -->
@@ -59,15 +60,26 @@
 
 
 <!-- Start of second page -->
-<div data-role="page" id="bar">
+<div data-role="page" id="settings">
 
 	<div data-role="header">
-		<h1>Bar</h1>
+		<h1>Settings</h1>
+		<a href="#camera" class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-camera">Camera
+		</a>
+		<a href="#gallery" class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-grid">Gallery
+		</a>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
-		<p><a href="#foo">Back to foo</a></p>
+		<form id="settingsForm" action="service.php">
+			<input	type="hidden" name="action" value="saveSettings">
+			Initial countdown timeout: <input type="number" name="initialTimeout"><br>
+			Interval: <input type="number" name="interval"><br>
+			Number of shots: <input	type="number" name="numOfShots"><br>
+			Show Battery Status: <input	type="radio" name="showBatteryStatus" value="true" checked> Yes<br>
+			<input type="radio" name="showBatteryStatus" value="false">No<br>
+			<input type="Submit">
+		</form>
 	</div><!-- /content -->
 
 </div><!-- /page -->
