@@ -11,27 +11,28 @@ require_once("CameraRaw.php");
 //exec ("gphoto2 --set-config uilock=1",$output);
 //echo join("\n",$output);
 
-if (!file_exists("settings.txt")) {
-	$settings = array( 
-            'initialTimeout' => 6, 
-            'interval' => 3, 
-            'numOfShots' => '4', 
-            'showBatteryStatus' => true 
-        );
-	$newSettingsFile = fopen("/home/pi/gphoto-webui/settings.txt", "w");
-	fwrite($newSettingsFile,serialize($settings));
-	sleep(1);
-	fclose($newSettingsFile);
-}
+// if (!file_exists("settings.txt")) {
+// 	$settings = array( 
+//             'initialTimeout' => 6, 
+//             'interval' => 3, 
+//             'numOfShots' => '4', 
+//             'showBatteryStatus' => true 
+//         );
+// 	$newSettingsFile = fopen("/home/pi/gphoto-webui/settings.txt", "w");
+// 	fwrite($newSettingsFile,serialize($settings));
+// 	sleep(1);
+// 	fclose($newSettingsFile);
+// }
 
-// Reading the data into string
-$infotxt = file_get_contents('/home/pi/gphoto-webui/settings.txt');
-//Convert from string to array 
-$info = unserialize($infotxt);
-//extract from array into variables I can use
-extract($info, EXTR_PREFIX_SAME);
+// // Reading the data into string
+// $infotxt = file_get_contents('/home/pi/gphoto-webui/settings.txt');
+// //Convert from string to array 
+// $info = unserialize($infotxt);
+// //extract from array into variables I can use
+// extract($info, EXTR_PREFIX_SAME);
 
-//$interval = 4;
+$interval = 7;
+$numOfShots = 4;
 
 $action = '';
 
@@ -79,7 +80,9 @@ try{
 			break;
 
 		case "takePicture":
-			exec ("gphoto2 --capture-image-and-download --filename \"./images/capture-%Y%m%d-%H%M%S-%03n.%C\" --interval=" + $interval,$output);
+			$command = "gphoto2 --capture-image-and-download --filename \"./images/capture-%Y%m%d-%H%M%S-%03n.%C\" -I " + $interval + " -F " + $numOfShots;
+			echo $command;
+			exec ($command,$output);
 			echo json_encode(true);					
 			break;
 	
