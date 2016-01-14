@@ -18,8 +18,9 @@ if (!file_exists("settings.txt")) {
             'numOfShots' => '4', 
             'showBatteryStatus' => true 
         );
-	$serializedInfo = serialize($settings);
-	fopen("settings.txt", "w");
+	$newSettingsFile = fopen("settings.txt", "w");
+	fwrite($newSettingsFile,serialize($settings));
+	fclose($newSettingsFile);
 }
 
 // set and write data for example 
@@ -50,7 +51,8 @@ try{
 			//Gather all the information from the GET method and save the settings for the user in localstorage
 			//Still need to update the information here
 			//This actually stores the updated data
-			fwrite($fp,serialize($store)); 
+			fwrite($fp,serialize($store));
+			//Close the file when finished
 			break;
 
 		case "checkBattery":
