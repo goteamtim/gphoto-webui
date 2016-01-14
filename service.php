@@ -11,13 +11,19 @@ require_once("CameraRaw.php");
 //exec ("gphoto2 --set-config uilock=1",$output);
 //echo join("\n",$output);
 
-// set and write data for example 
-$settings = array( 
+if (!file_exists("settings.txt")) {
+	$settings = array( 
             'initialTimeout' => 6, 
             'interval' => 3, 
             'numOfShots' => '4', 
             'showBatteryStatus' => true 
         );
+	$serializedInfo = serialize($settings);
+	fopen("settings.txt", "w");
+}
+
+// set and write data for example 
+
 
 $fp = fopen('settings.txt','w'); 
 
@@ -25,6 +31,8 @@ $fp = fopen('settings.txt','w');
 $infotxt = file_get_contents('settings.txt'); 
 $info = unserialize($infotxt);
 extract($info, EXTR_PREFIX_SAME);
+
+$interval = 4;
 
 $action = '';
 
