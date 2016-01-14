@@ -18,22 +18,20 @@ if (!file_exists("settings.txt")) {
             'numOfShots' => '4', 
             'showBatteryStatus' => true 
         );
-	$newSettingsFile = fopen("settings.txt", "w");
+	$newSettingsFile = fopen("/home/pi/gphoto-webui/settings.txt", "w");
 	fwrite($newSettingsFile,serialize($settings));
+	sleep(1);
 	fclose($newSettingsFile);
 }
 
-// set and write data for example 
-
-
-$fp = fopen('settings.txt','w'); 
-
-// Reading the data 
-$infotxt = file_get_contents('settings.txt'); 
+// Reading the data into string
+$infotxt = file_get_contents('/home/pi/gphoto-webui/settings.txt');
+//Convert from string to array 
 $info = unserialize($infotxt);
+//extract from array into variables I can use
 extract($info, EXTR_PREFIX_SAME);
 
-$interval = 4;
+//$interval = 4;
 
 $action = '';
 
@@ -41,18 +39,38 @@ if (isset($_GET['action'])){
 	$action = $_GET['action'];
 }
 
-
 $returnObj;
 
 try{
 	switch($action){
 
 		case "saveSettings":
-			//Gather all the information from the GET method and save the settings for the user in localstorage
-			//Still need to update the information here
+			if (isset($_GET['initialTimeout'])) {
+				$initialTimeout = $_GET['initialTimeout'];
+			}
+
+			if (isset($_GET['interval'])) {
+				$initialTimeout = $_GET['interval'];
+			}
+
+			if (isset($_GET['numOfShots'])) {
+				$initialTimeout = $_GET['numOfShots'];
+			}
+
+			if (isset($_GET['showBatteryStatus'])) {
+				$initialTimeout = $_GET['showBatteryStatus'];
+			}
 			//This actually stores the updated data
-			fwrite($fp,serialize($store));
-			//Close the file when finished
+			$settings = array( 
+	            'initialTimeout' => $initialTimeout, 
+	            'interval' => $interval, 
+	            'numOfShots' => $numOfShots, 
+	            'showBatteryStatus' => $showBatteryStatus 
+	        );
+			$newSettingsFile = fopen("/home/pi/gphoto-webui/settings.txt", "w");
+			fwrite($newSettingsFile,serialize($settings));
+			sleep(1);
+			fclose($newSettingsFile);
 			break;
 
 		case "checkBattery":
