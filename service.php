@@ -24,7 +24,7 @@ $fp = fopen('settings.txt','w');
 // Reading the data 
 $infotxt = file_get_contents('settings.txt'); 
 $info = unserialize($infotxt);
-extract($info);
+extract($info, EXTR_PREFIX_SAME);
 
 $action = '';
 
