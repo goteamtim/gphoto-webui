@@ -80,9 +80,7 @@ try{
 			break;
 
 		case "takePicture":
-			$command = "gphoto2 --capture-image-and-download --filename \"./images/capture-%Y%m%d-%H%M%S-%03n.%C\" -I " + $interval + " -F " + $numOfShots;
-			echo $command;
-			exec ($command,$output);
+			exec ("gphoto2 --capture-image-and-download --filename \"./images/capture-%Y%m%d-%H%M%S-%03n.%C\" -I ".$interval." -F ".$numOfShots,$output);
 			echo json_encode(true);					
 			break;
 	
