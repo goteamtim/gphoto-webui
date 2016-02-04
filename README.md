@@ -73,3 +73,5 @@ Image overlay options
 Settings page for countdown, image overlays, time lapse, etc.
 
 Send email or text when battery gets low
+
+Upload to Google Photos
